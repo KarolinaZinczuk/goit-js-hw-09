@@ -8,15 +8,22 @@ function getRandomHexColor() {
 
 let timerId = null;
 
-btnStart.addEventListener(`click`, () =>
+function changeColor() {
+  body.style.backgroundColor = getRandomHexColor();
+  btnStart.disabled = true;
+  btnStop.disabled = false;
+
   timerId = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
-    btnStart.disabled = true;
-    btnStop.disabled = false;
-  }, 1000 ));
+  }, 1000 );
+}
 
-btnStop.addEventListener(`click`, () => {
+function changeColorStop() {
   clearInterval(timerId);
   btnStart.disabled = false;
   btnStop.disabled = true;
-});
+}
+
+btnStart.addEventListener(`click`, changeColor);
+btnStop.addEventListener(`click`, changeColorStop);
+
