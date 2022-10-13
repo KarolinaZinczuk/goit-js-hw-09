@@ -10,23 +10,8 @@ const seconds = document.querySelector("[data-second]");
 
 btnStart.disabled = true;
 
-// const selectedTime = selectedDates[0];
 const currentTime = Date.now();
-
-// const options = {
-//     enableTime: true,
-//     time_24hr: true,
-//     defaultDate: new Date(),
-//     minuteIncrement: 1,
-//     onClose(selectedDates) {
-//       if (selectedTime < currentTime) {
-//         Notiflix.Notify.failure("Please choose a date in the future");
-//       } else {
-//         btnStart.disabled = false;
-//         selectedTime = selectedTime.getTime();
-//       }
-//     },
-//   };
+let dateSet;
 
 const options = {
   enableTime: true,
@@ -38,7 +23,7 @@ const options = {
       Notiflix.Notify.failure("Please choose a date in the future");
     } else {
       btnStart.disabled = false;
-      let selectedDates = selectedDates[0].getTime();
+      dateSet = selectedDates[0].getTime();
     }
   },
 };
@@ -64,7 +49,7 @@ let timerId = null;
 const startTimer = () => {
   btnStart.disabled = true;
   timerId = setInterval(() => {
-    let deltaTime = selectedTime - currentTime;
+    let deltaTime = dateSet - currentTime;
     const convertTime = convertMs(deltaTime);
     if (deltaTime = 0) {
       clearInterval(timerId);
