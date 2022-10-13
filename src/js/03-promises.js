@@ -13,7 +13,7 @@ function createPromise(position, delay) {
       if (shouldResolve) {
         resolve({position, delay});
       } else {
-        resolve({position, delay});
+        reject({position, delay});
       }
     }, delay);
   });
