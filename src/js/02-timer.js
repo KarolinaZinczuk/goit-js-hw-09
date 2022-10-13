@@ -10,23 +10,38 @@ const seconds = document.querySelector("[data-second]");
 
 btnStart.disabled = true;
 
-const selectedTime = selectedDates[0];
-const currentTime = date.now();
+// const selectedTime = selectedDates[0];
+const currentTime = Date.now();
+
+// const options = {
+//     enableTime: true,
+//     time_24hr: true,
+//     defaultDate: new Date(),
+//     minuteIncrement: 1,
+//     onClose(selectedDates) {
+//       if (selectedTime < currentTime) {
+//         Notiflix.Notify.failure("Please choose a date in the future");
+//       } else {
+//         btnStart.disabled = false;
+//         selectedTime = selectedTime.getTime();
+//       }
+//     },
+//   };
 
 const options = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-      if (selectedTime < currentTime) {
-        Notiflix.Notify.failure("Please choose a date in the future");
-      } else {
-        btnStart.disabled = false;
-        selectedTime = selectedTime.getTime();
-      }
-    },
-  };
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    if (selectedDates[0] < currentTime) {
+      Notiflix.Notify.failure("Please choose a date in the future");
+    } else {
+      btnStart.disabled = false;
+      let selectedDates = selectedDates[0].getTime();
+    }
+  },
+};
 
   function convertMs(ms) {
     const second = 1000;
