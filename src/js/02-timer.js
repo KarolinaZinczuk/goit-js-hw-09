@@ -51,7 +51,7 @@ const startTimer = () => {
   timerId = setInterval(() => {
     let deltaTime = dateSet - Date.now();
     const convertTime = convertMs(deltaTime);
-    if (deltaTime = 0) {
+    if (deltaTime <= 0) {
       clearInterval(timerId);
     } else {
       clockTimer(convertTime);
